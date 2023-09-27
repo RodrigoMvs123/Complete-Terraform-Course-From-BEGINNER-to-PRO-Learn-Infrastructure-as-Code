@@ -2,6 +2,10 @@
 
 https://www.youtube.com/watch?v=7xngnjfIlK4 
 
+https://raw.githubusercontent.com/RodrigoMvs123/Complete-Terraform-Course-From-BEGINNER-to-PRO-Learn-Infrastructure-as-Code/main/README.md
+
+
+
 https://github.com/sidpalas/devops-directive-terraform-course 
 
 1 - Evolution of Cloud + Infrastructure as Code
