@@ -1,4 +1,5 @@
-# Complete-Terraform-Course-From-BEGINNER-to-PRO-Learn-Infrastructure-as-Code
+
+## Complete-Terraform-Course-From-BEGINNER-to-PRO-Learn-Infrastructure-as-Code
 
 https://www.youtube.com/watch?v=7xngnjfIlK4 
 
@@ -8,6 +9,7 @@ https://github.com/RodrigoMvs123/Complete-Terraform-Course-From-BEGINNER-to-PRO-
 
 https://github.com/sidpalas/devops-directive-terraform-course 
 
+```
 1 - Evolution of Cloud + Infrastructure as Code
 2 - Terraform Overview +  Setup
 3 - Basic Terraform Usage
@@ -17,83 +19,103 @@ https://github.com/sidpalas/devops-directive-terraform-course
 7 - Managing Multiple Environments
 8 - Testing Terraform Code 
 9 - Developer Workflows
+```
 
 Reference Architecture 
-
+```
 Basic Web Application 
 Infrastructure all within AWS
 Multiple instances running on EC2
 Using default VPC for simplicity 
+```
 
+```
 Amazon Route 53
 Elastic Load Balancing 
 Compute
 Amazon EC2 - Amazon Simple Storage (S3)
 Database
 Amazon RDS
+```
 
 Party 1 
-Evolution of Cloud + Infrastructure as Code
 
+Evolution of Cloud + Infrastructure as Code
+```
 Idea
 1999 to 2000
 Write the software
 Setup a datacenter ( Power management, Networking, Operational Overhead )
-
+```
+```
 2010 to now 
 Idea
 Write software
 Deploy to cloud
-
+```
+```
 Infrastructure provisioned via API´s
 Servers created and destroyed in seconds
 Long-lived + multiple -> Short lived + immutable
-
+```
+```
 Provisioning Cloud Resources 
 Three Approuches
-
+```
+```
 GUI
 API/CLI
 Infrastructure as Code ( IaC )
-
+```
+```
 Categories of IaC tools:
 Ad hoc scripts 
 Configuration management tools
 Server Templating tools
 Orchestration tools ( Kubernetes ) 
 Provisioning tools
-
+```
+```
 IaC Provisioning Tools Landscape
 Cloud Specific 
 Cloud Formation
 Azure Resource Manager
 Google Cloud Deployment Manager 
-
+```
+```
 Cloud Agnostic 
 Terraform 
 Pulumi
+```
 
 Party 2 
-Terraform Overview +  Setup
 
+Terraform Overview +  Setup
+```
 What is Terraform
 Terraform is a tool for building, changing and versioning infrastructure safely and efficiently
 Enables application software best practices to infrastructure 
 Compatible with many cloud and services 
-
+```
+```
 Common Patterns 
-
+```
+```
 Terraform
 Provisioning 
-
+```
+```
 Ansible
 Config Management 
-
+```
+```
 Server Templating 
-
+```
+```
 Kubernetes 
 Orchestration
-
+```
+```
 Terraform Core ( Engine )
 Terraform State
 Terraform Config
@@ -101,10 +123,14 @@ AWS Provider
 Cloudflare Provider 
 AWS
 Cloudflare
+```
 
 Download Terraform
+
 https://www.youtube.com/watch?v=bSrV1Dr8py8 
+
 https://developer.hashicorp.com/terraform/downloads 
+```
 Este Computador ( Right Click )
 Configurações avançadas do sistema
 Variáveis de Ambientes
@@ -117,7 +143,8 @@ Ok
 PowerShell CLI
 terraform - -help
 terraform - -version 
-
+```
+```
 AWS UI
 AWS IAM 
 Add User
@@ -131,27 +158,38 @@ IAMFullAccess
 AmazonS3FullAccess
 AmazonDynamoDBFullAccess
 AmazonRouter53FullAccess
+```
 
 Instal AWS CLI
+
 https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html 
+
 https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html 
+```
 CMD CLI
 aws
 aws config 
 Access key ID
 Secret access key
+```
 
-Visual Studio Code
+### Visual Studio Code
 Terminal
+```bash
 cd 02-overview
 terraform init
 terraform plan
 terraform apply
+```
 
 AWS UI
+```
 EC2
 Instance ( Pending )
+```
 
+## Source Code
+```terraform
 Visual Studio Code
 EXPLORER 
 OPEN EDITORS 
@@ -175,26 +213,34 @@ resource "aws_instance" "example" {
   ami           = "ami-011899242bb902164" # Ubuntu 20.04 LTS // us-east-1
   instance_type = "t2.micro"
 }
+```
 
-Visual Studio Code
+### Visual Studio Code
 Terminal
+```bash
 terraform destroy
+```
 
 AWS UI
+```
 EC2
 Instance ( Destroyed )
+```
 
 Party 3
-Basic Terraform Usage
 
+Basic Terraform Usage
+```
 Basic Usage Sequence
 terraform init
 terraform plan
 terraform apply
 terraform destroy
+```
 
 Terraform Init
 
+```
 $ tree -a
 main.tf
 Terraform init
@@ -209,7 +255,9 @@ $ tree -a
 						3.23.0
 							darwin_amd64
 								terraform-provider-aws_v3.23.0_x5
+```
 
+```
 terraform.lock.hcl
 main.tf
 
@@ -219,60 +267,72 @@ $ tree -a
 			modules.json
 			vpc
 …
+```
 
+```
 State File
 Terraform´s representation of the world
 JSON file containing information about every resource and data object
 Contain sensitive information (e.g. database password)
 Can be stored locally or remotely
+```
 
 Local Backend
 
+```
 terraform state
 Simple to get started
 Sensitive values in plain text
 Uncollaborative
 Manual
+```
 
 Remote Backend
-
+```
 User
 Sensitive data encrypted
 Collaboration possible
 Automation possible
 Increased complexity
-
+```
+```
 Terraform State
 Terraform Cloud
 Amazon Simple Storage Service (S3)
-
+```
 Terraform Plan
-
+```
 Terraform config ( Desired state )
 Network Configuration
 Servers ( 4 )
 Database
-
+```
+```
 Terraform state ( Actual state )
 Network Configuration
 Servers ( 3 )
 Database
-
+```
+```
 Plan: +1 Virtual Machine 
 terraform apply 
 AWS Provider
-
+```
 Terraform Destroy
-
+```
 Terraform config ( Desired state )
 Network Configuration
 Servers ( 4 )
 Database
-
+```
+```
 Plan: Destroy Everything
-
+```
 Remote Backend ( Terraform Cloud )
+```
 
+## Source Code
+```terraform
 Visual Studio Code
 EXPLORER 
 OPEN EDITORS 
@@ -300,13 +360,48 @@ terraform {
 provider "aws" {
   region = "us-east-1"
 }
+```
+
+```
+Visual Studio Code
+EXPLORER 
+OPEN EDITORS 
+terraform-cloud-backend
+main.tf
+
+main.tf
+terraform {
+  backend "remote" {
+    organization = "devops-directive"
+
+    workspaces {
+      name = "devops-directive-terraform-course"
+    }
+  }
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.0"
+    }
+  }
+}
+
+provider "aws" {
+  region = "us-east-1"
+}
+```
 
 Open Terraform Cloud
-https://app.terraform.io/public/signup/account 
 
+- https://app.terraform.io/public/signup/account 
+```
 devops-directive
 Terraform Course
+```
 
+## Source Code
+```terraform
 Visual Studio Code
 EXPLORER 
 OPEN EDITORS 
@@ -336,14 +431,20 @@ terraform {
 provider "aws" {
   region = "us-east-1"
 }
+```
 
+```
 S3 Bucket used for storage
 DynamoDB used for locking
-
+```
+```
 Remote Backend (AWS)
 Bootstrapping - part 1
 No Remote Backend Specified (defaults to local)
+```
 
+## Source Code
+```terraform
 Visual Studio Code
 EXPLORER 
 OPEN EDITORS 
@@ -363,9 +464,12 @@ required_providers {
 provider "aws" {
   region = "us-east-1"
 }
+```
 
 Versioned and encrypted S3 Bucket
 
+## Source Code
+```terraform
 Visual Studio Code
 EXPLORER 
 OPEN EDITORS 
@@ -389,24 +493,31 @@ resource "aws_dynamodb_table" "terraform_locks" {
     type = "S"
   }
 }
+```
 
+```
 Bootstrapping - part 2
 Visual Studio Code
 Terminal
 terraform apply
 terraform init
+```
 
 AWS UI
+```
 terraform.tfstate
 Version ID
 …
 …
-
+```
 AWS UI ( Remote Backend )
-
+```
 Amazon S3 / devops-directive-tf-state
 DynamoDB / terraform-state-locking
+```
 
+## Source Code
+```terraform
 Visual Studio Code
 EXPLORER 
 OPEN EDITORS 
@@ -634,57 +745,72 @@ resource "aws_db_instance" "db_instance" {
   password                   = "foobarbaz"
   skip_final_snapshot        = true
 }
+```
 
-Visual Studio Code
+### Visual Studio Code
 Terminal
+```bash
 cd web-app
 terraform init
 terraform plan
 terraform apply
+```
 
 AWS - UI
+```
 EC2 
 Instances
 load balancers ( EC2 feature )
-
+```
+```
 Route S3 ( devopsdeployed.com )
 Hosted zone details ( Name servers )
 DNS
 Google Domains ( Name server )
-
+```
+```
 Load Balancer
 web-app-lb
 DNS name … ( Hello, World 1 or 2 )
-
+```
+```
 RDS ( Relational Database Service )
 DB Identifier 
+```
 
-Visual Studio Code
+### Visual Studio Code
 Terminal
+```bash
 terraform destroy
+```
 
 Party 4 
-Variables and Outputs 
 
+Variables and Outputs 
+```
 Variables Types 
 input variable
 var.<name>
 variable “intance_type”{
 description…
 …
-
+```
+```
 Local variables
 local.<name>
 locals {
 service_name …
 …
-
+```
 Output variables 
+```
 output “instance_ip_addr” {
 value …
 …
+```
 
 Setting Input Variables
+```
 ( In order of precedence // lowest -> highest )
 Manual entry during plan/apply
 Default value in declaration block
@@ -692,36 +818,45 @@ TF_VAR_<name> environment variables
 terraform.tfvars file
 *.auto.tfvars file
 Command line -var or -var-file
+```
 
 Types and Validation 
+```
 Primitive Types:
 string
 number
 bool
-
+```
+```
 Complex Types
 list(<TYPE>)
 set(<TYPE>)
 map(<TYPE>)
 object({<ATTR NAME>=<TYPE>,...})
 tuple([<TYPE>,...])
-
+```
+```
 Validation:
 Type checking happens automatically 
 Custom conditions can also be enforced 
-
+```
+```
 Sensitive Data
 Mark variables as sensitive:
 Sensitive = true
-
+```
+```
 Pass to terraform apply with:
 TV_VAR_variable
 -var ( retrived from secret manager at runtime )
-
+```
+```
 Can also use external secret store
 For example, AWS secret manager
+```
 
-
+## Source Code
+```terraform
 Visual Studio Code
 EXPLORER 
 OPEN EDITORS 
@@ -776,11 +911,16 @@ resource "aws_db_instance" "db_instance" {
   password            = var.db_pass
   skip_final_snapshot = true
 }
+```
 
-Visual Studio Code
+### Visual Studio Code
 Terminal
+```bash
 terraform apply -var=“db_user=myuser” -var=“db_pass=SOMETHINGSUPERSECURE”
+```
 
+## Source Code
+```terraform
 Visual Studio Code
 EXPLORER 
 OPEN EDITORS 
@@ -820,7 +960,9 @@ variable "db_pass" {
   type        = string
   sensitive   = true
 }
+```
 
+```terraform
 Visual Studio Code
 EXPLORER 
 OPEN EDITORS 
@@ -833,7 +975,9 @@ terraformtf.vars
 instance_name = "hello-world"
 ami           = "ami-011899242bb902164" # Ubuntu 20.04 LTS // us-east-1
 instance_type = "t2.micro"
+```
 
+```terraform
 Visual Studio Code
 EXPLORER 
 OPEN EDITORS 
@@ -844,10 +988,16 @@ another-variable-file.tfvars
 
 another-variable-file.tfvars
 instance_name = "hello-world-2"
+```
 
-Visual Studio Code
+### Visual Studio Code
 Terminal
+```bash
 terraform apply -var-file=another-variable-file.tfvars
+```
+
+## Source Code
+```terraform
 
 Visual Studio Code
 EXPLORER 
@@ -865,7 +1015,9 @@ output "instance_ip_addr" {
 output "db_instance_addr" {
   value = aws_db_instance.db_instance.address
 }
+```
 
+```terraform
 Visual Studio Code
 EXPLORER 
 OPEN EDITORS 
@@ -928,7 +1080,9 @@ variable "db_pass" {
   type        = string
   sensitive   = true
 }
+```
 
+```terraform
 Visual Studio Code
 EXPLORER 
 OPEN EDITORS 
@@ -949,7 +1103,9 @@ output "instance_2_ip_addr" {
 output "db_instance_addr" {
   value = aws_db_instance.db_instance.address
 }
+```
 
+```terraform
 Visual Studio Code
 EXPLORER 
 OPEN EDITORS 
@@ -964,11 +1120,14 @@ domain        = "devopsdeployed.com"
 db_name       = "mydb"
 db_user       = "foo"
 # db_pass = "foobarbaz"
+```
 
 Party 5
+
 Additional Language Features 
 
 Expressions + Functions 
+
 ## Expressions
 
 ### Strings
@@ -1124,26 +1283,34 @@ Puppet
 https://developer.hashicorp.com/terraform/language 
 
 Party 6
-Project Organization + Modules
 
+Project Organization + Modules
+```
 Types of Modules
 Module Sources 
 Inputs + Meta-Arguments 
-
+```
+```
 What makes a good module
 Raises abstraction level from base resource types
 Groups resources in a logical fashion 
 Exposes input variables to allow necessary customization + composition
 Provides useful defaults
 Return outputs to make further integrations possible
+```
 
 Terraform Registry
+```
 Ex: 
 terraform-aws-modules / security group
 AWS EC2 - VPC Security Group Terraform Module
-
+```
+```
 AWS Consul
+```
 
+## Source Code
+```terraform
 Visual Studio Code
 EXPLORER 
 OPEN EDITORS 
@@ -1188,15 +1355,20 @@ provider "aws" {
 module "consul" {
   source = "git@github.com:hashicorp/terraform-aws-consul.git"
 }
+```
 
-Visual Studio Code
+### Visual Studio Code
 Terminal
+```bash
 cd ../../06-organization-and-modules
 ls
 cd consul/
 terraform init
 terraform plan 
+```
 
+## Source Code
+```terraform
 Visual Studio Code
 EXPLORER 
 OPEN EDITORS 
@@ -1276,7 +1448,9 @@ variable "db_pass" {
   type        = string
   sensitive   = true
 }
+```
 
+```terraform
 Visual Studio Code
 EXPLORER 
 OPEN EDITORS 
@@ -1293,7 +1467,9 @@ terraform {
     }
   }
 }
+```
 
+```terraform
 Visual Studio Code
 EXPLORER 
 OPEN EDITORS 
@@ -1366,51 +1542,60 @@ module "web_app_2" {
   db_user          = "bar"
   db_pass          = var.db_pass_2
 }
+```
 
-Visual Studio Code
+### Visual Studio Code
 Terminal
+```bash
 cd ..
 cd web-app
 terraform init
 terraform apply
 terraform destroy
+```
 
 Party 7
+
 Managing Multiple Environments
 
 One Config - Multiple Environments 
 
 web-app ( terraform ) 
-
+```
 Amazon Route 53
 Elastic Load Balancing 
 Compute
 Amazon EC2 - Amazon Simple Storage (S3)
 Database
 Amazon RDS
-
+```
+```
 Amazon Route 53
 Elastic Load Balancing 
 Compute
 Amazon EC2 - Amazon Simple Storage (S3)
 Database
 Amazon RDS
-
+```
+```
 Amazon Route 53
 Elastic Load Balancing 
 Compute
 Amazon EC2 - Amazon Simple Storage (S3)
 Database
 Amazon RDS
-
+```
 Two main approaches
-
+```
 Workspaces
 File Structure 
-
+```
 Terragrunt
-https://terragrunt.gruntwork.io/ 
 
+- https://terragrunt.gruntwork.io/ 
+
+## Source Code
+```terraform
 Visual Studio Code
 EXPLORER 
 OPEN EDITORS 
@@ -1465,9 +1650,11 @@ module "web_app" {
   db_user          = "foo"
   db_pass          = var.db_pass
 }
+```
 
-Visual Studio Code
+### Visual Studio Code
 Terminal
+```bash
 terraform init
 terraform workspace list
 terraform workspace new production
@@ -1479,9 +1666,13 @@ terraform apply
 terraform destroy
 terraform workspace select production
 terraform destroy
+```
 
 cd../file-structure 
 
+
+## Source Code
+```terraform
 Visual Studio Code
 EXPLORER 
 OPEN EDITORS 
@@ -1517,14 +1708,18 @@ provider "aws" {
 resource "aws_route53_zone" "primary" {
   name = "devopsdeployed.com"
 }
+```
 
-
-Visual Studio Code
+### Visual Studio Code
 Terminal
+```bash
 cd global/
 terraform init
 terraform apply
+```
 
+## Source Code
+```terraform
 Visual Studio Code
 EXPLORER 
 OPEN EDITORS 
@@ -1579,25 +1774,32 @@ module "web_app" {
   db_user          = "foo"
   db_pass          = var.db_pass
 }
+```
 
-Visual Studio Code
+### Visual Studio Code
 Terminal
+```bash
 cd ../production/
 ls
 terraform init
 cd ..
 tree
+```
 
 Party 8
-Testing Terraform Code
 
+Testing Terraform Code
+```
 Code Rot
 Static Checks
 Built in
 External
 Manual Testing
 Automated Testing
+```
 
+## Source Code
+```terraform
 Visual Studio Code
 EXPLORER 
 OPEN EDITORS 
@@ -1635,8 +1837,9 @@ resource "aws_security_group_rule" "allow_http_inbound" {
 output "instance_ip_addr" {
   value = aws_instance.instance.public_ip
 }
+```
 
-
+```terraform
 Visual Studio Code
 EXPLORER 
 OPEN EDITORS 
@@ -1681,7 +1884,9 @@ output "instance_ip_addr" {
 output "url" {
   value = "http://${module.web_app.instance_ip_addr}:8080"
 }
+```
 
+```terraform
 Visual Studio Code
 EXPLORER 
 OPEN EDITORS 
@@ -1721,16 +1926,20 @@ variable "short_variable" {
 }
 External
 There are many 3rd party tools which can check Terraform configurations for potential issues and/or suggest best practices:
+```
 
+```
 tflint
 checkov
 terrascan
 terraform-compliance
 snyk
 Terraform Sentinel
+```
 
-Visual Studio Code
+### Visual Studio Code
 Terminal
+```bash
 cd module/
 ls
 cd hello-world
@@ -1738,7 +1947,10 @@ terraform fmt
 terraform fmt - -check
 instance.tf
 terraform fmt
+```
 
+## Source Code
+```terraform
 Visual Studio Code
 EXPLORER 
 OPEN EDITORS 
@@ -1769,15 +1981,20 @@ xargs -I {} curl http://{}:8080 -m 10
 
 # If request succeeds, destroy the resources
 terraform destroy -auto-approve
+```
 
-Visual Studio Code
+### Visual Studio Code
 Terminal
+```bash
 cd bash/
 ls
 ./hello_world_test.sh
 watch “curl https://18.234.207.51:8080”
 exit
+```
 
+## Source Code
+```go
 Visual Studio Code
 EXPLORER 
 OPEN EDITORS 
@@ -1824,40 +2041,46 @@ func validate(status int, body string) bool {
 	fmt.Println(body)
 	return status == 200
 }
+```
 
-Visual Studio Code
+### Visual Studio Code
 Terminal
+```bash
 go mod download
 go test -v - -timeout 10m
+```
 
 Party 9
+
 Developer Workflows
 
 General Workflow
-
+```
 Write/update code
 Run changes locally ( for development environment )
 Create pull request
 Run Test via Continuous Integration
 Deploy to staging via CD ( on merge to main )
 Deploy to production via CD (on release )
-
+```
 Going Multi-Account With Terraform on AWS
 https://www.hashicorp.com/resources/going-multi-account-with-terraform-on-aws 
-
+```
+```
 Additional Tools
 Terragrunt
 Cloud Nuke
 Makefiles
-
+```
+```
 Continuous Integration / Continuous Delivery
 Github Actions
 CircleCI
 GitLab
 Atlantis
-
+```
 Potential Gotchas
-
+```
 Name changes when refactoring 
 Sensitive data in Terraform state files
 Cloud timeouts
@@ -1867,17 +2090,21 @@ Uni-directional version upgrades
 Multiple ways to accomplish same configuration
 Some Params are immutable
 Out of band changes 
+```
 
 Github UI
+```
 Visual Studio Code
-terraform.yml
-name: "Terraform"
 
+terraform.yml
+
+name: "Terraform"
+```
 on:
-  # Uncomment to enable staging deploy from main
-  # push:
-  #   branches:
-  #     - main
+    Uncomment to enable staging deploy from main
+    push:
+      branches:
+        - main
   release:
     types: [published]
   pull_request:
@@ -1983,39 +2210,52 @@ jobs:
         run: |
           terraform init
           terraform apply -var db_pass=${{secrets.DB_PASS }} -auto-approve
+```
 
 Source Control ( update domain )
+
 Commit
 
+### 
 Visual Studio Code
 Terminal
+```bash
 git push 
+```
 
 Actions Tab
+```
 All workflows
 update domain
-
+```
+```
 git checkout -b ‘show-testing-on-pr’
 git commit --allow-empty -m “show testing on PRs”
 git push
 git push --set-upstream origin show-testing-on-pr
-
+```
 Actions
+```
 Compare & pull request
 Create pull request
-
+```
 Actions Tab
+```
 All workflows
 update domain
 v1.0.0
 Show testing on PRs
-
+```
+```
 Pull request 
 Show testing on PRs
-
+```
+```
 cd 07-managing-multiple-environments
 cd file-structure
 ls
 cd production
 terraform init
 terraform destroy
+```
+
